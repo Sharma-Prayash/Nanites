@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Shield with a magnifier lens: "inspect apps". Safe zone is the centre 66dp of 108dp. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FF4FD1C5"
+        android:pathData="M54,28 L76,36 L76,53 C76,67 66.5,77.5 54,81 C41.5,77.5 32,67 32,53 L32,36 Z" />
+    <path
+        android:fillColor="#FF0E2A47"
+        android:pathData="M54,33.5 L71,39.7 L71,53 C71,64 63.8,72.6 54,75.6 C44.2,72.6 37,64 37,53 L37,39.7 Z" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="4"
+        android:pathData="M51,52 m-8,0 a8,8 0 1,1 16,0 a8,8 0 1,1 -16,0" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="4.5"
+        android:strokeLineCap="round"
+        android:pathData="M57,58 L64,65" />
+</vector>

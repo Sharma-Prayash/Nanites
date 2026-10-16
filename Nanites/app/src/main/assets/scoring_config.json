@@ -1,0 +1,49 @@
+{
+  "ruleVersion": "rules-v2",
+  "findingCap": 24,
+  "bands": { "LOW": [0, 24], "MEDIUM": [25, 49], "HIGH": [50, 74], "CRITICAL": [75, 100] },
+  "singleFindings": {
+    "ACCESSIBILITY":        { "category": "SPECIAL_ACCESS", "granted": 24, "declared": 10 },
+    "DEVICE_ADMIN":         { "category": "SPECIAL_ACCESS", "granted": 22, "declared": 8 },
+    "NOTIFICATION_LISTENER":{ "category": "SPECIAL_ACCESS", "granted": 20, "declared": 8 },
+    "OVERLAY":              { "category": "SPECIAL_ACCESS", "granted": 16, "declared": 10 },
+    "INSTALL_PACKAGES":     { "category": "SPECIAL_ACCESS", "granted": 16, "declared": 4 },
+    "USAGE_STATS":          { "category": "SPECIAL_ACCESS", "granted": 10, "declared": 6 },
+    "SMS":                  { "category": "SMS", "granted": 10, "declared": 5 },
+    "CONTACTS_CALL_LOGS":   { "category": "CONTACTS_CALL_LOGS", "granted": 12, "declared": 6 },
+    "ALL_FILES_ACCESS":     { "category": "STORAGE_MEDIA", "granted": 12, "declared": 8 },
+    "LOCATION":             { "category": "LOCATION", "granted": 10, "declared": 5, "backgroundBonus": 4 },
+    "CAMERA_MIC":           { "category": "CAMERA_MIC", "granted": 10, "declared": 5 },
+    "PHONE_IDENTITY":       { "category": "PHONE_IDENTITY", "granted": 4, "declared": 2 },
+    "MEDIA_STORAGE":        { "category": "STORAGE_MEDIA", "granted": 6, "declared": 3 },
+    "BOOT_PERSISTENCE":     { "category": "BACKGROUND_PERSISTENCE", "granted": 4, "declared": 4, "batteryExemptionBonus": 4 },
+    "SIDELOADED":           { "category": "CONTEXT", "points": 6 },
+    "LEGACY_TARGET_SDK":    { "category": "CONTEXT", "points": 6, "belowSdk": 23 },
+    "DEBUGGABLE":           { "category": "HYGIENE", "points": 4 },
+    "CLEARTEXT":            { "category": "HYGIENE", "points": 2 },
+    "EXPORTED_UNPROTECTED": { "category": "HYGIENE", "points": 2, "minCount": 3 },
+    "NETWORK_ONLY":         { "category": "NETWORK", "points": 0 }
+  },
+  "combinations": {
+    "R001": { "name": "SMS + network + persistence", "points": 0, "sideloadedPoints": 23 },
+    "R002": { "name": "Accessibility + overlay", "points": 16, "enabledPoints": 24 },
+    "R003": { "name": "Notification listener + network", "points": 10, "enabledPoints": 16 },
+    "R004": { "name": "Unusual device admin", "points": 18 },
+    "R005": { "name": "Purpose mismatch (heuristic)", "points": 15,
+              "keywords": ["torch", "flashlight", "calculator", "calc", "wallpaper", "theme", "ringtone",
+                           "font", "compass", "qr", "scanner", "cleaner", "booster"] },
+    "R006": { "name": "Broad storage + network", "points": 8 },
+    "R007": { "name": "Multiple high-impact access", "points": 12, "minEnabled": 2 },
+    "R008": { "name": "New sensitive permission", "points": 8 },
+    "R009": { "name": "Known malicious hash", "scoreFloor": 90 }
+  },
+  "modifiers": {
+    "installer": { "PLAY_STORE": 0.75, "OEM_STORE": 0.85, "SIDELOADED": 1.0, "UNKNOWN": 1.0, "PRELOADED": 1.0 },
+    "systemApp": 0.5,
+    "roleSuppression": {
+      "DEFAULT_SMS": ["SMS", "R001"],
+      "DEFAULT_DIALER": ["CONTACTS_CALL_LOGS", "PHONE_IDENTITY"],
+      "SECURITY_OR_MDM": ["R004"]
+    }
+  }
+}
